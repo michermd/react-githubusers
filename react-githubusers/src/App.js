@@ -1,10 +1,24 @@
-import React, { Component } from "react";
-import "./App.css";
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
+import Form from "./components/Form";
+import CardList from "./components/CardList";
 
-class App extends Component {
-  render() {
-    return <div className="App">Hello, World!</div>;
-  }
-}
+const App = () => {
+  const [cards, setCards] = useState([]);
+
+  const addNewCard = cardInfo => {
+    setCards(cards.concat(cardInfo));
+  };
+
+  return (
+    <div>
+      <Form onSubmit={addNewCard} />
+      <CardList cards={cards} />
+    </div>
+  );
+};
+
+const rootElement = document.getElementById("root");
+ReactDOM.render(<App />, rootElement);
 
 export default App;
